@@ -39,16 +39,42 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      <ul className="flex flex-nowrap w-full overflow-x-auto gap-4">
-        {nowPlayingMovies.map((movie) => (
-          <MovieBackdropCard movie={movie} />
-        ))}
-      </ul>
-      <ul className="flex flex-nowrap w-full overflow-x-auto gap-4">
-        {popularMovies.map((movie) => (
-          <MovieCard movie={movie} />
-        ))}
-      </ul>
+      <header className="bg-gray-700 mb-4 py-12">
+        <div className="container mx-auto">
+          <h1 className="text-white text-2xl font-bold mb-1">
+            Welcome to Couch Potato!
+          </h1>
+          <h3 className="text-white text-xl mb-2">
+            Home of The Greatest Movies of All Time!
+          </h3>
+          <div>
+            <input className="bg-white w-[80%] p-2 rounded" type="text"></input>
+          </div>
+        </div>
+      </header>
+      <div className="container mx-auto">
+        <section className="mb-4">
+          <h2 className="text-gray-800 text-xl mb-2 font-bold">
+            Now Playing...
+          </h2>
+          <ul className="flex flex-nowrap w-full overflow-x-auto gap-4">
+            {nowPlayingMovies.map((movie) => (
+              <MovieBackdropCard movie={movie} />
+            ))}
+          </ul>
+        </section>
+
+        <section>
+          <h2 className="text-gray-800 text-xl mb-2 font-bold">
+            Popular Movies
+          </h2>
+          <ul className="flex flex-nowrap w-full overflow-x-auto gap-4">
+            {popularMovies.map((movie) => (
+              <MovieCard movie={movie} />
+            ))}
+          </ul>
+        </section>
+      </div>
     </>
   );
 };
