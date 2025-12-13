@@ -1,6 +1,11 @@
 import type { IMovie } from "./IMovie";
 
+export interface IMovieGenre {
+  id: number;
+  name: string;
+}
 export interface IMovieDetails extends IMovie {
   runtime: number;
-  genres: { id: number; name: string }[];
+  tagline: string;
+  genres: IMovieGenre[];
 }

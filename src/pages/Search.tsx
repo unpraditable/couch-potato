@@ -1,5 +1,5 @@
 // src/components/movies/MovieDetails.tsx
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useSearchMovies } from "../hooks/useSearchMovies";
 
