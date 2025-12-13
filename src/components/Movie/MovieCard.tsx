@@ -6,10 +6,10 @@ const MovieCard = ({ movie }: { movie: IMovie }) => {
     ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
     : "https://via.placeholder.com/500x750?text=No+Image";
   return (
-    <li>
+    <li className="grow-0 shrink-0 basis-auto flex-initial w-[150px]">
       <Link to={{ pathname: `/movie/${movie.id}` }}>
         <img
-          className="h-60 rounded"
+          className="rounded object-cover"
           src={imageUrl}
           alt={`${movie.title} poster`}
         />

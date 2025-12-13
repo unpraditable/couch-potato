@@ -39,12 +39,12 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      <ul className="w-full overflow-x-auto">
+      <ul className="flex flex-nowrap w-full overflow-x-auto gap-4">
         {nowPlayingMovies.map((movie) => (
           <MovieBackdropCard movie={movie} />
         ))}
-      </ul>{" "}
-      <ul className="grid grid-cols-4 gap-4">
+      </ul>
+      <ul className="flex flex-nowrap w-full overflow-x-auto gap-4">
         {popularMovies.map((movie) => (
           <MovieCard movie={movie} />
         ))}
