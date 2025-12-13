@@ -1,22 +1,41 @@
 // src/components/movies/MovieDetails.tsx
-import React, { useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import React, { useCallback, useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useSearchMovies } from "../hooks/useSearchMovies";
 import MovieCard from "../components/Movie/MovieCard";
 import SearchBar from "../components/General/SearchBar";
 import Header from "../components/General/Header";
+import Pagination from "../components/General/Pagination";
 
 const SearchPage: React.FC = () => {
   const [searchParams] = useSearchParams();
   const { searchResults, search } = useSearchMovies();
-  const { results: movies } = searchResults;
+  const {
+    results: movies,
+    page: currentPage,
+    total_pages: totalPages,
+    total_results: totalResults,
+  } = searchResults;
   const query = searchParams.get("q") || "";
+  const page = searchParams.get("page") || "1";
+  console.log(query, "query");
+
+  console.log(page, "page");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (query) {
-      search(query);
+      search(query, page);
     }
-  }, [query, search]);
+  }, [query, page, search]);
+
+  const handlePageChange = useCallback(
+    (page: number) => {
+      navigate(`/search/movie?q=${encodeURIComponent(query)}&page=${page}`);
+    },
+    [navigate, query]
+  );
 
   return (
     <>
@@ -32,6 +51,17 @@ const SearchPage: React.FC = () => {
               return <MovieCard movie={movie} />;
             })}
           </ul>
+
+          {totalPages > 1 && (
+            <div className="mt-8 space-y-4">
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+                totalResults={totalResults}
+              />
+            </div>
+          )}
         </div>
       </section>
     </>

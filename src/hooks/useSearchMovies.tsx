@@ -14,7 +14,7 @@ export const useSearchMovies = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const search = useCallback(async (query: string) => {
+  const search = useCallback(async (query: string, page: string) => {
     if (!query.trim()) {
       setSearchResults({
         page: 0,
@@ -29,7 +29,7 @@ export const useSearchMovies = () => {
     setError(null);
 
     try {
-      const data = await movieService.searchMovies(query);
+      const data = await movieService.searchMovies(query, parseInt(page));
       setSearchResults(data);
     } catch (err) {
       console.error("Error in search movies:", err);

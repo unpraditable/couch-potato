@@ -16,32 +16,67 @@ const tmdbApi = axios.create({
 
 export const movieService = {
   getPopularMovies: async (): Promise<IMovie[]> => {
-    const response = await tmdbApi.get("/movie/popular");
-    return response.data.results;
+    try {
+      const response = await tmdbApi.get("/movie/popular");
+      return response.data.results;
+    } catch (error) {
+      console.error("Error getting popular movies", error);
+      throw error;
+    }
   },
 
   getNowPlayingMovies: async (): Promise<IMovie[]> => {
-    const response = await tmdbApi.get("/movie/now_playing");
-    return response.data.results;
+    try {
+      const response = await tmdbApi.get("/movie/now_playing");
+      return response.data.results;
+    } catch (error) {
+      console.error("Error getting now playing movies", error);
+      throw error;
+    }
   },
 
   getTopRated: async (): Promise<IMovie[]> => {
-    const response = await tmdbApi.get("/movie/top_rated");
-    return response.data.results;
+    try {
+      const response = await tmdbApi.get("/movie/top_rated");
+      return response.data.results;
+    } catch (error) {
+      console.error("Error getting top rated movies", error);
+      throw error;
+    }
   },
 
   getUpcoming: async (): Promise<IMovie[]> => {
-    const response = await tmdbApi.get("/movie/upcoming");
-    return response.data.results;
+    try {
+      const response = await tmdbApi.get("/movie/upcoming");
+      return response.data.results;
+    } catch (error) {
+      console.error("Error getting upcoming movies", error);
+      throw error;
+    }
   },
 
   getMovieDetails: async (id: number): Promise<IMovieDetails> => {
-    const response = await tmdbApi.get(`/movie/${id}`);
-    return response.data;
+    try {
+      const response = await tmdbApi.get(`/movie/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error getting movie details", error);
+      throw error;
+    }
   },
 
-  searchMovies: async (keyword: string): Promise<IMovieSearchResults> => {
-    const response = await tmdbApi.get(`/search/movie?query=${keyword}`);
-    return response.data;
+  searchMovies: async (
+    keyword: string,
+    page: number = 1
+  ): Promise<IMovieSearchResults> => {
+    try {
+      const response = await tmdbApi.get("/search/movie", {
+        params: { query: keyword, page },
+      });
+      return response.data;
+    } catch (error) {
+      console.error(`Error searching movies for "${keyword}":`, error);
+      throw error;
+    }
   },
 };
