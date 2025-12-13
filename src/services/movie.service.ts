@@ -38,4 +38,9 @@ export const movieService = {
     const response = await tmdbApi.get(`/movie/${id}`);
     return response.data;
   },
+
+  searchMovies: async (keyword: string): Promise<IMovie[]> => {
+    const response = await tmdbApi.get(`/search/movie?query=${keyword}`);
+    return response.data;
+  },
 };
