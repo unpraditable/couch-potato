@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import { useSearchMovies } from "../hooks/useSearchMovies";
 import MovieCard from "../components/Movie/MovieCard";
 import SearchBar from "../components/General/SearchBar";
+import Header from "../components/General/Header";
 
 const SearchPage: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -18,17 +19,22 @@ const SearchPage: React.FC = () => {
   }, [query, search]);
 
   return (
-    <section className="container mx-auto">
-      <h2 className="text-gray-800 text-xl text-center mt-4 mb-6 font-bold">
-        Search Results For "{query}"
-      </h2>
-      <SearchBar />
-      <ul className="grid grid-cols-2 gap-4 justify-items-center sm:grid-cols-4 lg:grid-cols-5">
-        {movies.map((movie) => {
-          return <MovieCard movie={movie} />;
-        })}
-      </ul>
-    </section>
+    <>
+      <Header />
+      <section className="bg-white dark:bg-gray-700 dark:text-white">
+        <div className="container mx-auto">
+          <h2 className="text-xl text-center mb-6 font-bold">
+            Search Results For "{query}"
+          </h2>
+          <SearchBar />
+          <ul className="grid grid-cols-2 gap-4 justify-items-center sm:grid-cols-4 lg:grid-cols-5">
+            {movies.map((movie) => {
+              return <MovieCard movie={movie} />;
+            })}
+          </ul>
+        </div>
+      </section>
+    </>
   );
 };
 

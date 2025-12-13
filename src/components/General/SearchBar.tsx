@@ -25,7 +25,7 @@ const SearchBar: React.FC = () => {
           placeholder="Search movies..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="bg-white p-2 w-full"
+          className="bg-white p-2 w-full text-gray-800"
         />
       </div>
     </form>

@@ -36,7 +36,7 @@ const MovieHeader: React.FC<MovieHeaderProps> = ({ movie }) => {
           {movie.genres.map((genre: IMovieGenre) => (
             <span
               key={genre.id}
-              className="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 rounded-full text-sm font-medium"
+              className="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-gray-800 dark:text-white rounded-full text-sm font-medium"
             >
               {genre.name}
             </span>

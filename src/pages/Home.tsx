@@ -6,6 +6,7 @@ import { movieService } from "../services/movie.service";
 import MovieCard from "../components/Movie/MovieCard";
 import MovieBackdropCard from "../components/Movie/MovieBackdropCard";
 import SearchBar from "../components/General/SearchBar";
+import Header from "../components/General/Header";
 
 const HomePage: React.FC = () => {
   const [popularMovies, setPopularMovies] = useState<IMovie[]>([]);
@@ -40,39 +41,38 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      <header className="bg-gray-700 mb-4 py-12">
-        <div className="container mx-auto">
-          <h1 className="text-white text-2xl font-bold mb-1">
-            Welcome to Couch Potato!
-          </h1>
-          <h3 className="text-white text-xl mb-2">
-            Home of The Greatest Movies of All Time!
-          </h3>
-          <SearchBar />
-        </div>
-      </header>
-      <div className="container mx-auto">
-        <section className="mb-4">
-          <h2 className="text-gray-800 text-xl mb-2 font-bold">
-            Now Playing...
-          </h2>
-          <ul className="flex flex-nowrap w-full overflow-x-auto gap-4">
-            {nowPlayingMovies.map((movie) => (
-              <MovieBackdropCard movie={movie} />
-            ))}
-          </ul>
-        </section>
+      <Header />
+      <div className="bg-white dark:bg-gray-700 dark:text-white">
+        <header className="bg-gray-700 mb-4 py-12">
+          <div className="container mx-auto">
+            <h1 className="text-white text-2xl font-bold mb-1">
+              Welcome to Couch Potato!
+            </h1>
+            <h3 className="text-white text-xl mb-2">
+              Home of The Greatest Movies of All Time!
+            </h3>
+            <SearchBar />
+          </div>
+        </header>
+        <main className="container mx-auto">
+          <section className="mb-4">
+            <h2 className=" text-xl mb-2 font-bold">Now Playing...</h2>
+            <ul className="flex flex-nowrap w-full overflow-x-auto gap-4">
+              {nowPlayingMovies.map((movie) => (
+                <MovieBackdropCard movie={movie} />
+              ))}
+            </ul>
+          </section>
 
-        <section>
-          <h2 className="text-gray-800 text-xl mb-2 font-bold">
-            Popular Movies
-          </h2>
-          <ul className="flex flex-nowrap w-full overflow-x-auto gap-4">
-            {popularMovies.map((movie) => (
-              <MovieCard movie={movie} />
-            ))}
-          </ul>
-        </section>
+          <section>
+            <h2 className=" text-xl mb-2 font-bold">Popular Movies</h2>
+            <ul className="flex flex-nowrap w-full overflow-x-auto gap-4">
+              {popularMovies.map((movie) => (
+                <MovieCard movie={movie} />
+              ))}
+            </ul>
+          </section>
+        </main>
       </div>
     </>
   );
