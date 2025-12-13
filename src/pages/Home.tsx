@@ -4,9 +4,12 @@ import type { IMovie } from "../types/IMovie";
 
 import { movieService } from "../services/movie.service";
 import MovieCard from "../components/Movie/MovieCard";
+import MovieBackdropCard from "../components/Movie/MovieBackdropCard";
 
 const HomePage: React.FC = () => {
-  const [movies, setMovies] = useState<IMovie[]>([]);
+  const [popularMovies, setPopularMovies] = useState<IMovie[]>([]);
+  const [nowPlayingMovies, setNowPlayingMovies] = useState<IMovie[]>([]);
+
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -14,7 +17,10 @@ const HomePage: React.FC = () => {
     try {
       setIsLoading(true);
       const popularMovies = await movieService.getPopularMovies();
-      setMovies(popularMovies);
+      const nowPlayingMovies = await movieService.getNowPlayingMovies();
+
+      setPopularMovies(popularMovies);
+      setNowPlayingMovies(nowPlayingMovies);
       setError(null);
     } catch (err) {
       setError("Failed to load movies. Please try again later.");
@@ -28,16 +34,22 @@ const HomePage: React.FC = () => {
     fetchMovies();
   }, []);
 
-  console.log(movies, "moviess");
   console.log(isLoading);
   console.log(error);
 
   return (
-    <ul>
-      {movies.map((movie) => (
-        <MovieCard movie={movie} />
-      ))}
-    </ul>
+    <>
+      <ul className="w-full overflow-x-auto">
+        {nowPlayingMovies.map((movie) => (
+          <MovieBackdropCard movie={movie} />
+        ))}
+      </ul>{" "}
+      <ul className="grid grid-cols-4 gap-4">
+        {popularMovies.map((movie) => (
+          <MovieCard movie={movie} />
+        ))}
+      </ul>
+    </>
   );
 };
 

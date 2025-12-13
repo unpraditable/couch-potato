@@ -18,7 +18,7 @@ export const movieService = {
     return response.data.results;
   },
 
-  getNowPlaying: async (): Promise<IMovie[]> => {
+  getNowPlayingMovies: async (): Promise<IMovie[]> => {
     const response = await tmdbApi.get("/movie/now_playing");
     return response.data.results;
   },
