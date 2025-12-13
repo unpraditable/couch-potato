@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import type { IMovie } from "../../types/IMovie";
 
 const MovieCard = ({ movie }: { movie: IMovie }) => {
@@ -6,12 +7,14 @@ const MovieCard = ({ movie }: { movie: IMovie }) => {
     : "https://via.placeholder.com/500x750?text=No+Image";
   return (
     <li>
-      <img
-        className="h-60 rounded"
-        src={imageUrl}
-        alt={`${movie.title} poster`}
-      />
-      <p>{movie.title}</p>
+      <Link to={{ pathname: `/movie/${movie.id}` }}>
+        <img
+          className="h-60 rounded"
+          src={imageUrl}
+          alt={`${movie.title} poster`}
+        />
+        <p>{movie.title}</p>
+      </Link>
     </li>
   );
 };

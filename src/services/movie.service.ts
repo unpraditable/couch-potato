@@ -1,6 +1,7 @@
 // src/services/tmdb.service.ts
 import axios from "axios";
 import type { IMovie } from "../types/IMovie.ts";
+import type { IMovieDetails } from "../types/IMovieDetails.ts";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const BASE_URL = import.meta.env.VITE_TMDB_BASE_URL;
@@ -31,5 +32,10 @@ export const movieService = {
   getUpcoming: async (): Promise<IMovie[]> => {
     const response = await tmdbApi.get("/movie/upcoming");
     return response.data.results;
+  },
+
+  getMovieDetails: async (id: number): Promise<IMovieDetails> => {
+    const response = await tmdbApi.get(`/movie/${id}`);
+    return response.data;
   },
 };
