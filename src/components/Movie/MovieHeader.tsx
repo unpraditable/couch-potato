@@ -1,4 +1,3 @@
-// src/components/movies/MovieHeader.tsx
 import React from "react";
 import type { IMovieDetails, IMovieGenre } from "../../types/IMovieDetails";
 

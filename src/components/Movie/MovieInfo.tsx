@@ -1,4 +1,3 @@
-// src/components/movies/MovieInfo.tsx
 import React from "react";
 import type { IMovieDetails } from "../../types/IMovieDetails";
 

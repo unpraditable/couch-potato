@@ -2,6 +2,7 @@
 import axios from "axios";
 import type { IMovie } from "../types/IMovie.ts";
 import type { IMovieDetails } from "../types/IMovieDetails.ts";
+import type { IMovieSearchResults } from "../types/IMovieSearchResults.ts";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const BASE_URL = import.meta.env.VITE_TMDB_BASE_URL;
@@ -39,7 +40,7 @@ export const movieService = {
     return response.data;
   },
 
-  searchMovies: async (keyword: string): Promise<IMovie[]> => {
+  searchMovies: async (keyword: string): Promise<IMovieSearchResults> => {
     const response = await tmdbApi.get(`/search/movie?query=${keyword}`);
     return response.data;
   },

@@ -5,6 +5,7 @@ import type { IMovie } from "../types/IMovie";
 import { movieService } from "../services/movie.service";
 import MovieCard from "../components/Movie/MovieCard";
 import MovieBackdropCard from "../components/Movie/MovieBackdropCard";
+import SearchBar from "../components/General/SearchBar";
 
 const HomePage: React.FC = () => {
   const [popularMovies, setPopularMovies] = useState<IMovie[]>([]);
@@ -47,9 +48,7 @@ const HomePage: React.FC = () => {
           <h3 className="text-white text-xl mb-2">
             Home of The Greatest Movies of All Time!
           </h3>
-          <div>
-            <input className="bg-white w-[80%] p-2 rounded" type="text"></input>
-          </div>
+          <SearchBar />
         </div>
       </header>
       <div className="container mx-auto">

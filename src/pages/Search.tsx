@@ -2,15 +2,14 @@
 import React, { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useSearchMovies } from "../hooks/useSearchMovies";
+import MovieCard from "../components/Movie/MovieCard";
+import SearchBar from "../components/General/SearchBar";
 
 const SearchPage: React.FC = () => {
   const [searchParams] = useSearchParams();
-
-  const { movies, search } = useSearchMovies();
-
+  const { searchResults, search } = useSearchMovies();
+  const { results: movies } = searchResults;
   const query = searchParams.get("q") || "";
-
-  console.log(query, "params");
 
   useEffect(() => {
     if (query) {
@@ -18,9 +17,19 @@ const SearchPage: React.FC = () => {
     }
   }, [query, search]);
 
-  console.log(movies, "movie");
-
-  return <h1>Hello!</h1>;
+  return (
+    <section className="container mx-auto">
+      <h2 className="text-gray-800 text-xl text-center mt-4 mb-6 font-bold">
+        Search Results For "{query}"
+      </h2>
+      <SearchBar />
+      <ul className="grid grid-cols-2 gap-4 justify-items-center sm:grid-cols-4 lg:grid-cols-5">
+        {movies.map((movie) => {
+          return <MovieCard movie={movie} />;
+        })}
+      </ul>
+    </section>
+  );
 };
 
 export default SearchPage;

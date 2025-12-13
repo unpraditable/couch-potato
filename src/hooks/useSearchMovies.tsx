@@ -1,16 +1,27 @@
-// src/hooks/useMovies.ts
 import { useState, useCallback } from "react";
-import type { IMovie } from "../types/IMovie";
 import { movieService } from "../services/movie.service";
+import type { IMovieSearchResults } from "../types/IMovieSearchResults";
 
 export const useSearchMovies = () => {
-  const [movies, setMovies] = useState<IMovie[]>([]);
+  const defaultSearchResult = {
+    page: 0,
+    results: [],
+    total_pages: 0,
+    total_results: 0,
+  };
+  const [searchResults, setSearchResults] =
+    useState<IMovieSearchResults>(defaultSearchResult);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const search = useCallback(async (query: string) => {
     if (!query.trim()) {
-      setMovies([]);
+      setSearchResults({
+        page: 0,
+        results: [],
+        total_pages: 0,
+        total_results: 0,
+      });
       return;
     }
 
@@ -19,7 +30,7 @@ export const useSearchMovies = () => {
 
     try {
       const data = await movieService.searchMovies(query);
-      setMovies(data);
+      setSearchResults(data);
     } catch (err) {
       console.error("Error in search movies:", err);
     } finally {
@@ -28,10 +39,16 @@ export const useSearchMovies = () => {
   }, []);
 
   return {
-    movies,
+    searchResults,
     loading,
     error,
     search,
-    clearResults: () => setMovies([]),
+    clearResults: () =>
+      setSearchResults({
+        page: 0,
+        results: [],
+        total_pages: 0,
+        total_results: 0,
+      }),
   };
 };
