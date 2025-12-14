@@ -53,11 +53,11 @@ const MovieSection = <T extends IMovie>({
     }
 
     return (
-      <ul className="flex flex-nowrap w-full overflow-x-auto gap-4">
+      <div className="flex flex-nowrap w-full overflow-x-auto gap-4">
         {movies.map((movie) => (
-          <li key={movie.id}>{renderMovie(movie)}</li>
+          <ul key={movie.id}>{renderMovie(movie)}</ul>
         ))}
-      </ul>
+      </div>
     );
   };
 
