@@ -1,77 +1,56 @@
-// src/pages/HomePage.tsx
-import React, { useState, useEffect } from "react";
-import type { IMovie } from "../types/IMovie";
-
-import { movieService } from "../services/movie.service";
-import MovieCard from "../components/Movie/MovieCard";
-import MovieBackdropCard from "../components/Movie/MovieBackdropCard";
+import React from "react";
 import SearchBar from "../components/General/SearchBar";
 import Header from "../components/General/Header";
+import { usePopularMovies, useNowPlayingMovies } from "../hooks/useFetchMovies";
+import {
+  NowPlayingSection,
+  PopularMoviesSection,
+} from "../components/Movie/MovieSectionCollections";
 
 const HomePage: React.FC = () => {
-  const [popularMovies, setPopularMovies] = useState<IMovie[]>([]);
-  const [nowPlayingMovies, setNowPlayingMovies] = useState<IMovie[]>([]);
+  const {
+    movies: popularMovies,
+    isLoading: isLoadingPopular,
+    error: errorPopular,
+    fetchMovies: fetchPopularMovies,
+  } = usePopularMovies();
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchMovies = async () => {
-    try {
-      setIsLoading(true);
-      const popularMovies = await movieService.getPopularMovies();
-      const nowPlayingMovies = await movieService.getNowPlayingMovies();
-
-      setPopularMovies(popularMovies);
-      setNowPlayingMovies(nowPlayingMovies);
-      setError(null);
-    } catch (err) {
-      setError("Failed to load movies. Please try again later.");
-      console.error("Error fetching movies:", err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchMovies();
-  }, []);
-
-  console.log(isLoading);
-  console.log(error);
+  const {
+    movies: nowPlayingMovies,
+    isLoading: isLoadingNowPlaying,
+    error: errorNowPlaying,
+    fetchMovies: fetchNowPlayingMovies,
+  } = useNowPlayingMovies();
 
   return (
     <>
       <Header />
-      <div className="bg-white dark:bg-gray-700 dark:text-white">
+      <div className="bg-white dark:bg-gray-700 dark:text-white min-h-screen">
         <header className="bg-gray-700 mb-4 py-12">
           <div className="container mx-auto">
-            <h1 className="text-white text-2xl font-bold mb-1">
+            <h1 className="text-white text-2xl font-bold mb-2">
               Welcome to Couch Potato!
             </h1>
-            <h3 className="text-white text-xl mb-2">
+            <h3 className="text-white text-xl mb-6">
               Home of The Greatest Movies of All Time!
             </h3>
             <SearchBar />
           </div>
         </header>
-        <main className="container mx-auto">
-          <section className="mb-4">
-            <h2 className=" text-xl mb-2 font-bold">Now Playing...</h2>
-            <ul className="flex flex-nowrap w-full overflow-x-auto gap-4">
-              {nowPlayingMovies.map((movie) => (
-                <MovieBackdropCard movie={movie} />
-              ))}
-            </ul>
-          </section>
+        <main className="container mx-auto pb-8">
+          <NowPlayingSection
+            movies={nowPlayingMovies}
+            isLoading={isLoadingNowPlaying}
+            error={errorNowPlaying}
+            onRetry={fetchNowPlayingMovies}
+          />
 
-          <section>
-            <h2 className=" text-xl mb-2 font-bold">Popular Movies</h2>
-            <ul className="flex flex-nowrap w-full overflow-x-auto gap-4">
-              {popularMovies.map((movie) => (
-                <MovieCard movie={movie} />
-              ))}
-            </ul>
-          </section>
+          <PopularMoviesSection
+            movies={popularMovies}
+            isLoading={isLoadingPopular}
+            error={errorPopular}
+            onRetry={fetchPopularMovies}
+          />
         </main>
       </div>
     </>

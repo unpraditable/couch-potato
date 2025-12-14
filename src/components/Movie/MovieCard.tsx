@@ -8,12 +8,12 @@ interface MovieCardProps {
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const imageUrl = movie.poster_path
     ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-    : "https://via.placeholder.com/500x750?text=No+Image";
+    : "https://blocks.astratic.com/img/general-img-landscape.png";
   return (
-    <li className="grow-0 shrink-0 basis-auto flex-initial max-w-37.5">
+    <li className="grow-0 shrink-0 basis-auto flex-initial w-50 mb-8">
       <Link to={{ pathname: `/movie/${movie.id}` }}>
         <img
-          className="rounded object-cover max-h-50"
+          className="rounded object-cover w-full h-75"
           src={imageUrl}
           alt={`${movie.title} poster`}
         />

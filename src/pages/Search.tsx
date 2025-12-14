@@ -18,10 +18,6 @@ const SearchPage: React.FC = () => {
   } = searchResults;
   const query = searchParams.get("q") || "";
   const page = searchParams.get("page") || "1";
-  console.log(query, "query");
-
-  console.log(page, "page");
-
   const navigate = useNavigate();
 
   useEffect(() => {
