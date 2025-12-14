@@ -1,8 +1,8 @@
 // src/services/tmdb.service.ts
 import axios from "axios";
-import type { IMovie } from "../types/IMovie.ts";
-import type { IMovieDetails } from "../types/IMovieDetails.ts";
-import type { IMovieSearchResults } from "../types/IMovieSearchResults.ts";
+import type { Movie } from "../types/Movie.ts";
+import type { MovieSearchResults } from "../types/MovieSearchResults.ts";
+import type { MovieDetails } from "../types/MovieDetails.ts";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const BASE_URL = import.meta.env.VITE_TMDB_BASE_URL;
@@ -15,7 +15,7 @@ const tmdbApi = axios.create({
 });
 
 export const movieService = {
-  getPopularMovies: async (): Promise<IMovie[]> => {
+  getPopularMovies: async (): Promise<Movie[]> => {
     try {
       const response = await tmdbApi.get("/movie/popular");
       return response.data.results;
@@ -25,7 +25,7 @@ export const movieService = {
     }
   },
 
-  getNowPlayingMovies: async (): Promise<IMovie[]> => {
+  getNowPlayingMovies: async (): Promise<Movie[]> => {
     try {
       const response = await tmdbApi.get("/movie/now_playing");
       return response.data.results;
@@ -35,7 +35,7 @@ export const movieService = {
     }
   },
 
-  getTopRated: async (): Promise<IMovie[]> => {
+  getTopRated: async (): Promise<Movie[]> => {
     try {
       const response = await tmdbApi.get("/movie/top_rated");
       return response.data.results;
@@ -45,7 +45,7 @@ export const movieService = {
     }
   },
 
-  getUpcoming: async (): Promise<IMovie[]> => {
+  getUpcoming: async (): Promise<Movie[]> => {
     try {
       const response = await tmdbApi.get("/movie/upcoming");
       return response.data.results;
@@ -55,7 +55,7 @@ export const movieService = {
     }
   },
 
-  getMovieDetails: async (id: number): Promise<IMovieDetails> => {
+  getMovieDetails: async (id: number): Promise<MovieDetails> => {
     try {
       const response = await tmdbApi.get(`/movie/${id}`);
       return response.data;
@@ -68,7 +68,7 @@ export const movieService = {
   searchMovies: async (
     keyword: string,
     page: number = 1
-  ): Promise<IMovieSearchResults> => {
+  ): Promise<MovieSearchResults> => {
     try {
       const response = await tmdbApi.get("/search/movie", {
         params: { query: keyword, page },

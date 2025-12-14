@@ -2,7 +2,7 @@ import {
   type User,
   type LoginCredentials,
   type RegisterCredentials,
-} from "../types/IAuth";
+} from "../types/Auth";
 
 const STORAGE_KEY = "auth_app";
 const USERS_KEY = "auth_users";

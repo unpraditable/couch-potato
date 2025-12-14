@@ -1,8 +1,8 @@
 import React from "react";
-import type { IMovieDetails, IMovieGenre } from "../../types/IMovieDetails";
+import type { MovieDetails, MovieGenre } from "../../types/MovieDetails";
 
 interface MovieHeaderProps {
-  movie: IMovieDetails;
+  movie: MovieDetails;
 }
 
 const MovieHeader: React.FC<MovieHeaderProps> = ({ movie }) => {
@@ -33,7 +33,7 @@ const MovieHeader: React.FC<MovieHeaderProps> = ({ movie }) => {
         </div>
 
         <div className="flex flex-wrap gap-2">
-          {movie.genres.map((genre: IMovieGenre) => (
+          {movie.genres.map((genre: MovieGenre) => (
             <span
               key={genre.id}
               className="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-gray-800 dark:text-white rounded-full text-sm font-medium"

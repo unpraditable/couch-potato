@@ -1,8 +1,8 @@
 import React from "react";
-import type { IMovie } from "../../types/IMovie";
+import type { Movie } from "../../types/Movie";
 import Loader from "../General/Loader";
 
-interface MovieSectionProps<T extends IMovie> {
+interface MovieSectionProps<T extends Movie> {
   title: string;
   movies: T[];
   isLoading: boolean;
@@ -12,7 +12,7 @@ interface MovieSectionProps<T extends IMovie> {
   emptyMessage?: string;
 }
 
-const MovieSection = <T extends IMovie>({
+const MovieSection = <T extends Movie>({
   title,
   movies,
   isLoading,

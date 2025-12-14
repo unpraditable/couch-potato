@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import type { IMovie } from "../../types/IMovie";
+import type { Movie } from "../../types/Movie";
 
 interface MovieCardProps {
-  movie: IMovie;
+  movie: Movie;
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {

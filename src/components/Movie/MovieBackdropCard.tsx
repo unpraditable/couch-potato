@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import type { IMovie } from "../../types/IMovie";
+import type { Movie } from "../../types/Movie";
 
-const MovieBackdropCard = ({ movie }: { movie: IMovie }) => {
+const MovieBackdropCard = ({ movie }: { movie: Movie }) => {
   const imageUrl = movie.backdrop_path
     ? `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`
     : "https://via.placeholder.com/500x750?text=No+Image";

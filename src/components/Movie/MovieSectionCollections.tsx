@@ -1,5 +1,5 @@
 import React from "react";
-import type { IMovie } from "../../types/IMovie";
+import type { Movie } from "../../types/Movie";
 import MovieSection from "./MovieSection";
 import MovieCard from "./MovieCard";
 import MovieBackdropCard from "./MovieBackdropCard";
@@ -11,7 +11,7 @@ interface MovieSectionBaseProps {
 }
 
 interface PopularMoviesSectionProps extends MovieSectionBaseProps {
-  movies: IMovie[];
+  movies: Movie[];
 }
 
 export const PopularMoviesSection: React.FC<PopularMoviesSectionProps> = ({
@@ -33,7 +33,7 @@ export const PopularMoviesSection: React.FC<PopularMoviesSectionProps> = ({
 };
 
 interface NowPlayingSectionProps extends MovieSectionBaseProps {
-  movies: IMovie[];
+  movies: Movie[];
 }
 
 export const NowPlayingSection: React.FC<NowPlayingSectionProps> = ({

@@ -1,19 +1,19 @@
 import { useState, useEffect, useCallback } from "react";
-import type { IMovie } from "../types/IMovie";
+import type { Movie } from "../types/Movie";
 import { movieService } from "../services/movie.service";
 
 interface useFetchMoviesResult {
-  movies: IMovie[];
+  movies: Movie[];
   isLoading: boolean;
   error: string | null;
   fetchMovies: () => Promise<void>;
 }
 
 export const useFetchMovies = (
-  fetchFunction: () => Promise<IMovie[]>,
-  initialData: IMovie[] = []
+  fetchFunction: () => Promise<Movie[]>,
+  initialData: Movie[] = []
 ): useFetchMoviesResult => {
-  const [movies, setMovies] = useState<IMovie[]>(initialData);
+  const [movies, setMovies] = useState<Movie[]>(initialData);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 

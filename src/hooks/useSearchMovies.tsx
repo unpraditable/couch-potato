@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { movieService } from "../services/movie.service";
-import type { IMovieSearchResults } from "../types/IMovieSearchResults";
+import type { MovieSearchResults } from "../types/MovieSearchResults";
 
 export const useSearchMovies = () => {
   const defaultSearchResult = {
@@ -10,7 +10,7 @@ export const useSearchMovies = () => {
     total_results: 0,
   };
   const [searchResults, setSearchResults] =
-    useState<IMovieSearchResults>(defaultSearchResult);
+    useState<MovieSearchResults>(defaultSearchResult);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
