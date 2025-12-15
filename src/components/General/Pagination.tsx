@@ -25,8 +25,8 @@ const Pagination: React.FC<PaginationProps> = ({
         <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-          aria-label="Go to previous page"
+          className="p-2 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          title="Go to previous page"
         >
           <ArrowLeftIcon className="w-5 h-5" />
         </button>
@@ -34,19 +34,19 @@ const Pagination: React.FC<PaginationProps> = ({
         <button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-          aria-label="Go to next page"
+          className="p-2 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          title="Go to next page"
         >
           <ArrowRightIcon className="w-5 h-5" />
         </button>
       </nav>
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2 text-sm">
-          <span className="text-gray-600 dark:text-gray-400">Go to page:</span>
+          <span className="text-gray-600 dark:text-gray-200">Go to page:</span>
           <select
             value={currentPage}
             onChange={(e) => onPageChange(parseInt(e.target.value))}
-            className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded px-3 py-1 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded px-3 py-1 cursor-pointer focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           >
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
               <option key={page} value={page}>
@@ -56,7 +56,7 @@ const Pagination: React.FC<PaginationProps> = ({
           </select>
         </div>
 
-        <div className="text-sm text-gray-500 dark:text-gray-400">
+        <div className="text-sm text-gray-500 dark:text-gray-200">
           Showing {(currentPage - 1) * 20 + 1} -{" "}
           {Math.min(currentPage * 20, totalResults)} of{" "}
           {totalResults.toLocaleString()} movies

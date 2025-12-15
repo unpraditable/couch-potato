@@ -1,27 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { movieService } from "../services/movie.service";
 import type { MovieSearchResults } from "../types/MovieSearchResults";
 
-export const useSearchMovies = () => {
-  const defaultSearchResult = {
-    page: 0,
-    results: [],
-    total_pages: 0,
-    total_results: 0,
-  };
+const emptyResults: MovieSearchResults = {
+  page: 0,
+  results: [],
+  total_pages: 0,
+  total_results: 0,
+};
+
+export const useSearchMovies = (query: string, page: number) => {
   const [searchResults, setSearchResults] =
-    useState<MovieSearchResults>(defaultSearchResult);
+    useState<MovieSearchResults>(emptyResults);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const search = async (query: string, page: string) => {
+  const fetchSearchResults = useCallback(async () => {
     if (!query.trim()) {
-      setSearchResults({
-        page: 0,
-        results: [],
-        total_pages: 0,
-        total_results: 0,
-      });
+      setSearchResults(emptyResults);
       return;
     }
 
@@ -29,26 +25,24 @@ export const useSearchMovies = () => {
     setError(null);
 
     try {
-      const data = await movieService.searchMovies(query, parseInt(page));
+      const data = await movieService.searchMovies(query, page);
       setSearchResults(data);
     } catch (err) {
-      console.error("Error in search movies:", err);
+      setError("Failed to search movies. Please try again.");
+      console.error("Error searching movies:", err);
     } finally {
       setLoading(false);
     }
-  };
+  }, [query, page]);
+
+  useEffect(() => {
+    fetchSearchResults();
+  }, [fetchSearchResults]);
 
   return {
     searchResults,
     loading,
     error,
-    search,
-    clearResults: () =>
-      setSearchResults({
-        page: 0,
-        results: [],
-        total_pages: 0,
-        total_results: 0,
-      }),
+    refetch: fetchSearchResults,
   };
 };
