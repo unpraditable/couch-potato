@@ -15,6 +15,11 @@ import PrivateRoute from "./components/General/PrivateRoute";
 
 function App() {
   const { isAuthenticated } = useAuth();
+  const protectedRoutes = [
+    { path: "/", element: <HomePage /> },
+    { path: "/movie/:id", element: <MovieDetailsPage /> },
+    { path: "/search/movie", element: <SearchPage /> },
+  ];
 
   return (
     <>
@@ -29,32 +34,11 @@ function App() {
             element={isAuthenticated ? <Navigate to="/" /> : <Register />}
           />
 
-          <Route
-            path="/"
-            element={
-              <PrivateRoute>
-                <HomePage />
-              </PrivateRoute>
-            }
-          />
-
-          <Route
-            path="/movie/:id"
-            element={
-              <PrivateRoute>
-                <MovieDetailsPage />
-              </PrivateRoute>
-            }
-          />
-
-          <Route
-            path="/search/movie"
-            element={
-              <PrivateRoute>
-                <SearchPage />
-              </PrivateRoute>
-            }
-          />
+          <Route element={<PrivateRoute />}>
+            {protectedRoutes.map(({ path, element }) => (
+              <Route key={path} path={path} element={element} />
+            ))}
+          </Route>
         </Routes>
       </Router>
     </>
