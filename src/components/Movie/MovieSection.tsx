@@ -1,6 +1,7 @@
 import React from "react";
 import type { Movie } from "../../types/Movie";
 import Loader from "../General/Loader";
+import ErrorWithRetryButton from "../General/ErrorWithRetryButton";
 
 interface MovieSectionProps<T extends Movie> {
   title: string;
@@ -25,23 +26,13 @@ const MovieSection = <T extends Movie>({
     if (isLoading) {
       return (
         <div className="flex justify-center items-center h-64">
-          <Loader size="lg" />
+          <Loader />
         </div>
       );
     }
 
     if (error) {
-      return (
-        <div className="text-center py-8">
-          <p className="text-red-500 dark:text-red-400">{error}</p>
-          <button
-            onClick={onRetry}
-            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
-          >
-            Retry
-          </button>
-        </div>
-      );
+      return <ErrorWithRetryButton error={error} onRetry={onRetry} />;
     }
 
     if (movies.length === 0) {
