@@ -1,5 +1,5 @@
 // src/components/movies/MovieDetails.tsx
-import React, { useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useSearchMovies } from "../hooks/useSearchMovies";
 import MovieCard from "../components/Movie/MovieCard";
@@ -26,12 +26,9 @@ const SearchPage: React.FC = () => {
     }
   }, [query, page, search]);
 
-  const handlePageChange = useCallback(
-    (page: number) => {
-      navigate(`/search/movie?q=${encodeURIComponent(query)}&page=${page}`);
-    },
-    [navigate, query]
-  );
+  const handlePageChange = (page: number) => {
+    navigate(`/search/movie?q=${encodeURIComponent(query)}&page=${page}`);
+  };
 
   return (
     <>

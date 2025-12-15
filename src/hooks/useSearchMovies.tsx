@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { movieService } from "../services/movie.service";
 import type { MovieSearchResults } from "../types/MovieSearchResults";
 
@@ -14,7 +14,7 @@ export const useSearchMovies = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const search = useCallback(async (query: string, page: string) => {
+  const search = async (query: string, page: string) => {
     if (!query.trim()) {
       setSearchResults({
         page: 0,
@@ -36,7 +36,7 @@ export const useSearchMovies = () => {
     } finally {
       setLoading(false);
     }
-  }, []);
+  };
 
   return {
     searchResults,
