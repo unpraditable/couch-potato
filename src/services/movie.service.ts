@@ -1,4 +1,3 @@
-// src/services/tmdb.service.ts
 import axios from "axios";
 import type { Movie } from "../types/Movie.ts";
 import type { MovieSearchResults } from "../types/MovieSearchResults.ts";
@@ -35,7 +34,7 @@ export const movieService = {
     }
   },
 
-  getTopRated: async (): Promise<Movie[]> => {
+  getTopRatedMovies: async (): Promise<Movie[]> => {
     try {
       const response = await tmdbApi.get("/movie/top_rated");
       return response.data.results;
@@ -45,7 +44,7 @@ export const movieService = {
     }
   },
 
-  getUpcoming: async (): Promise<Movie[]> => {
+  getUpcomingMovies: async (): Promise<Movie[]> => {
     try {
       const response = await tmdbApi.get("/movie/upcoming");
       return response.data.results;

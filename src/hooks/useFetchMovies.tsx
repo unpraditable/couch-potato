@@ -45,3 +45,11 @@ export const usePopularMovies = () => {
 export const useNowPlayingMovies = () => {
   return useFetchMovies(movieService.getNowPlayingMovies, []);
 };
+
+export const useUpcomingMovies = () => {
+  return useFetchMovies(movieService.getUpcomingMovies, []);
+};
+
+export const useTopRatedMovies = () => {
+  return useFetchMovies(movieService.getTopRatedMovies, []);
+};

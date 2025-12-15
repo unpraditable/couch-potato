@@ -1,26 +1,47 @@
 import React from "react";
 import SearchBar from "../components/General/SearchBar";
 import Header from "../components/General/Header";
-import { usePopularMovies, useNowPlayingMovies } from "../hooks/useFetchMovies";
 import {
-  NowPlayingSection,
+  usePopularMovies,
+  useNowPlayingMovies,
+  useUpcomingMovies,
+  useTopRatedMovies,
+} from "../hooks/useFetchMovies";
+import {
+  NowPlayingMoviesSection,
   PopularMoviesSection,
-} from "../components/Movie/MovieSectionCollections";
+  TopRatedMoviesSection,
+  UpcomingMoviesSection,
+} from "../components/Movie/MovieSectionComponents";
 
 const HomePage: React.FC = () => {
   const {
     movies: popularMovies,
-    isLoading: isLoadingPopular,
-    error: errorPopular,
+    isLoading: isLoadingPopularMovies,
+    error: errorPopularMovies,
     fetchMovies: fetchPopularMovies,
   } = usePopularMovies();
 
   const {
     movies: nowPlayingMovies,
-    isLoading: isLoadingNowPlaying,
-    error: errorNowPlaying,
+    isLoading: isLoadingNowPlayingMovies,
+    error: errorNowPlayingMovies,
     fetchMovies: fetchNowPlayingMovies,
   } = useNowPlayingMovies();
+
+  const {
+    movies: topRatedMovies,
+    isLoading: isLoadingTopRatedMovies,
+    error: errorTopRatedMovies,
+    fetchMovies: fetchTopRatedMovies,
+  } = useTopRatedMovies();
+
+  const {
+    movies: upcomingMovies,
+    isLoading: isLoadingUpcomingMovies,
+    error: errorUpcomingMovies,
+    fetchMovies: fetchUpcomingMovies,
+  } = useUpcomingMovies();
 
   return (
     <>
@@ -38,18 +59,32 @@ const HomePage: React.FC = () => {
           </div>
         </header>
         <main className="container mx-auto pb-8">
-          <NowPlayingSection
+          <NowPlayingMoviesSection
             movies={nowPlayingMovies}
-            isLoading={isLoadingNowPlaying}
-            error={errorNowPlaying}
+            isLoading={isLoadingNowPlayingMovies}
+            error={errorNowPlayingMovies}
             onRetry={fetchNowPlayingMovies}
           />
 
           <PopularMoviesSection
             movies={popularMovies}
-            isLoading={isLoadingPopular}
-            error={errorPopular}
+            isLoading={isLoadingPopularMovies}
+            error={errorPopularMovies}
             onRetry={fetchPopularMovies}
+          />
+
+          <TopRatedMoviesSection
+            movies={topRatedMovies}
+            isLoading={isLoadingTopRatedMovies}
+            error={errorTopRatedMovies}
+            onRetry={fetchTopRatedMovies}
+          />
+
+          <UpcomingMoviesSection
+            movies={upcomingMovies}
+            isLoading={isLoadingUpcomingMovies}
+            error={errorUpcomingMovies}
+            onRetry={fetchUpcomingMovies}
           />
         </main>
       </div>
