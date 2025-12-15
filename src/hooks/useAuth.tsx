@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { authService } from "../services/auth.service";
 
 export const useAuth = () => {
@@ -6,10 +6,6 @@ export const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(
     authService.getCurrentSession().isAuthenticated
   );
-
-  useEffect(() => {
-    authService.initStorage();
-  }, []);
 
   const register = (username: string, email: string, password: string) => {
     authService.register({ username, email, password });
