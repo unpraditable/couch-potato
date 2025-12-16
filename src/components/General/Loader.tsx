@@ -1,6 +1,4 @@
-import React from "react";
-
-const Loader: React.FC = () => {
+const Loader = () => {
   return (
     <div className="flex justify-center items-center">
       <div

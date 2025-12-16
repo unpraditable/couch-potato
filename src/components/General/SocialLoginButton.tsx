@@ -1,16 +1,14 @@
-import React from "react";
-
 interface SocialLoginButtonProps {
   provider: "google";
   onClick: () => void;
   isLoading?: boolean;
 }
 
-const SocialLoginButton: React.FC<SocialLoginButtonProps> = ({
+const SocialLoginButton = ({
   provider,
   onClick,
   isLoading,
-}) => {
+}: SocialLoginButtonProps) => {
   const providers = {
     google: {
       text: "Continue with Google",

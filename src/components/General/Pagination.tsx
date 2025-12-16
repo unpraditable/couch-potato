@@ -1,5 +1,4 @@
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
-import React from "react";
 
 interface PaginationProps {
   currentPage: number;
@@ -8,12 +7,12 @@ interface PaginationProps {
   totalResults: number;
 }
 
-const Pagination: React.FC<PaginationProps> = ({
+const Pagination = ({
   currentPage,
   totalPages,
   onPageChange,
   totalResults,
-}) => {
+}: PaginationProps) => {
   if (totalPages <= 1) return null;
 
   return (

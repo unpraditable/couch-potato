@@ -3,10 +3,10 @@ interface ErrorWithRetryButtonProps {
   onRetry: () => void;
 }
 
-const ErrorWithRetryButton: React.FC<ErrorWithRetryButtonProps> = ({
+const ErrorWithRetryButton = ({
   error,
   onRetry,
-}) => (
+}: ErrorWithRetryButtonProps) => (
   <div className="text-center py-8">
     <p className="text-red-500 dark:text-red-400">{error}</p>
     <button

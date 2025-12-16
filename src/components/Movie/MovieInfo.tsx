@@ -1,11 +1,10 @@
-import React from "react";
 import type { MovieDetails } from "../../types/MovieDetails";
 
 interface MovieInfoProps {
   movie: MovieDetails;
 }
 
-const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
+const MovieInfo = ({ movie }: MovieInfoProps) => {
   return (
     <div className="card p-6">
       <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">

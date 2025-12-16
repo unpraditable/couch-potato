@@ -1,10 +1,9 @@
 import { FilmIcon } from "@heroicons/react/24/solid";
-import React from "react";
 import ToggleDarkModeButton from "./ToggleDarkModeButton";
 import AccountMenuButton from "./AccountMenuButton";
 import { useNavigate } from "react-router-dom";
 
-const Header: React.FC = () => {
+const Header = () => {
   const navigate = useNavigate();
 
   return (

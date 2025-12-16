@@ -1,4 +1,3 @@
-import React from "react";
 import SearchBar from "../components/General/SearchBar";
 import Header from "../components/General/Header";
 import {
@@ -14,7 +13,7 @@ import {
   UpcomingMoviesSection,
 } from "../components/Movie/MovieSectionComponents";
 
-const HomePage: React.FC = () => {
+const HomePage = () => {
   const {
     movies: popularMovies,
     isLoading: isLoadingPopularMovies,

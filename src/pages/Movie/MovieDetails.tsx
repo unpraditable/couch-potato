@@ -1,4 +1,3 @@
-import React from "react";
 import { useParams } from "react-router-dom";
 import { useMovieDetails } from "../../hooks/useMovieDetails";
 import Header from "../../components/General/Header";
@@ -7,7 +6,7 @@ import MovieInfo from "../../components/Movie/MovieInfo";
 import Loader from "../../components/General/Loader";
 import ErrorWithRetryButton from "../../components/General/ErrorWithRetryButton";
 
-const MovieDetailsPage: React.FC = () => {
+const MovieDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
   const { movie, loading, error, refetch } = useMovieDetails(id);
 

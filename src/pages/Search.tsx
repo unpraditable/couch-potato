@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { useSearchMovies } from "../hooks/useSearchMovies";
@@ -9,7 +8,7 @@ import Pagination from "../components/General/Pagination";
 import ErrorWithRetryButton from "../components/General/ErrorWithRetryButton";
 import Loader from "../components/General/Loader";
 
-const SearchPage: React.FC = () => {
+const SearchPage = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 

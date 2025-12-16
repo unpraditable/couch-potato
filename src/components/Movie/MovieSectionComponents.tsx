@@ -1,4 +1,3 @@
-import React from "react";
 import type { Movie } from "../../types/Movie";
 import MovieSection from "./MovieSection";
 import MovieCard from "./MovieCard";
@@ -11,12 +10,12 @@ interface MovieSectionProps {
   movies: Movie[];
 }
 
-export const PopularMoviesSection: React.FC<MovieSectionProps> = ({
+export const PopularMoviesSection = ({
   movies,
   isLoading,
   error,
   onRetry,
-}) => {
+}: MovieSectionProps) => {
   return (
     <MovieSection
       title="Popular Movies"
@@ -29,12 +28,12 @@ export const PopularMoviesSection: React.FC<MovieSectionProps> = ({
   );
 };
 
-export const NowPlayingMoviesSection: React.FC<MovieSectionProps> = ({
+export const NowPlayingMoviesSection = ({
   movies,
   isLoading,
   error,
   onRetry,
-}) => {
+}: MovieSectionProps) => {
   return (
     <MovieSection
       title="Now Playing..."
@@ -47,12 +46,12 @@ export const NowPlayingMoviesSection: React.FC<MovieSectionProps> = ({
   );
 };
 
-export const TopRatedMoviesSection: React.FC<MovieSectionProps> = ({
+export const TopRatedMoviesSection = ({
   movies,
   isLoading,
   error,
   onRetry,
-}) => {
+}: MovieSectionProps) => {
   return (
     <MovieSection
       title="Top Rated Movies"
@@ -65,12 +64,12 @@ export const TopRatedMoviesSection: React.FC<MovieSectionProps> = ({
   );
 };
 
-export const UpcomingMoviesSection: React.FC<MovieSectionProps> = ({
+export const UpcomingMoviesSection = ({
   movies,
   isLoading,
   error,
   onRetry,
-}) => {
+}: MovieSectionProps) => {
   return (
     <MovieSection
       title="Upcoming Movies"

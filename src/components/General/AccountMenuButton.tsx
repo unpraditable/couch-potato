@@ -3,7 +3,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
 import { HeartIcon, UserIcon } from "@heroicons/react/24/solid";
 
-const AccountMenuButton: React.FC = () => {
+const AccountMenuButton = () => {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);

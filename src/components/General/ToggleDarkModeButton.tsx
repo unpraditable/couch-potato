@@ -1,7 +1,7 @@
 import { MoonIcon, SunIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 
-const ToggleDarkModeButton: React.FC = () => {
+const ToggleDarkModeButton = () => {
   const [isDarkMode, setIsDarkMode] = useState(() => {
     return document.documentElement.classList.contains("dark");
   });
