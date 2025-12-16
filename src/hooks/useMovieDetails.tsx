@@ -3,7 +3,7 @@ import { movieService } from "../services/movie.service";
 import type { MovieDetails } from "../types/MovieDetails";
 
 export const useMovieDetails = (movieId: string | undefined) => {
-  const [movie, setMovie] = useState<MovieDetails | null>(null);
+  const [movieDetails, setMovie] = useState<MovieDetails | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -28,5 +28,5 @@ export const useMovieDetails = (movieId: string | undefined) => {
     fetchMovieDetails();
   }, [fetchMovieDetails]);
 
-  return { movie, loading, error, refetch: fetchMovieDetails };
+  return { movieDetails, loading, error, refetch: fetchMovieDetails };
 };

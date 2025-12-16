@@ -1,27 +1,39 @@
 import type { MovieDetails } from "../../types/MovieDetails";
+import CastCard from "../Cast/CastCard";
 
 interface MovieInfoProps {
   movie: MovieDetails;
 }
 
-const MovieInfo = ({ movie }: MovieInfoProps) => {
+const MovieInfo = ({ movie: movieDetails }: MovieInfoProps) => {
   return (
-    <div className="card p-6">
+    <div className="p-6">
       <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-        {movie.title}
+        {movieDetails.title}
       </h1>
 
-      {movie.tagline && (
+      {movieDetails.tagline && (
         <p className="text-lg italic text-gray-600 dark:text-gray-400">
-          "{movie.tagline}"
+          "{movieDetails.tagline}"
         </p>
       )}
 
-      <div className="mt-8">
+      <section className="my-8">
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          {movie.overview || "No overview available."}
+          {movieDetails.overview || "No overview available."}
         </p>
-      </div>
+      </section>
+
+      {movieDetails?.credits?.cast && (
+        <section className="text-gray-700 dark:text-gray-300">
+          <h2 className="text-xl mb-4 font-bold">Casts:</h2>
+          <div className="flex flex-nowrap w-full overflow-x-auto gap-4">
+            {movieDetails?.credits?.cast.map((cast) => (
+              <ul key={movieDetails.id}>{<CastCard cast={cast} />}</ul>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 };

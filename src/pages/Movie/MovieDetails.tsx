@@ -8,7 +8,7 @@ import ErrorWithRetryButton from "../../components/General/ErrorWithRetryButton"
 
 const MovieDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
-  const { movie, loading, error, refetch } = useMovieDetails(id);
+  const { movieDetails, loading, error, refetch } = useMovieDetails(id);
 
   if (loading) {
     return (
@@ -34,7 +34,7 @@ const MovieDetailsPage = () => {
     );
   }
 
-  if (!movie) {
+  if (!movieDetails) {
     return (
       <>
         <Header />
@@ -49,11 +49,11 @@ const MovieDetailsPage = () => {
     <>
       <Header />
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 relative">
-        {movie.backdrop_path && (
+        {movieDetails.backdrop_path && (
           <div
             className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-20"
             style={{
-              backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
+              backgroundImage: `url(https://image.tmdb.org/t/p/original${movieDetails.backdrop_path})`,
             }}
           />
         )}
@@ -61,11 +61,11 @@ const MovieDetailsPage = () => {
         <div className="relative z-10 container mx-auto px-4 py-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-1">
-              <MovieHeader movie={movie} />
+              <MovieHeader movie={movieDetails} />
             </div>
 
             <div className="lg:col-span-2 space-y-8">
-              <MovieInfo movie={movie} />
+              <MovieInfo movie={movieDetails} />
             </div>
           </div>
         </div>

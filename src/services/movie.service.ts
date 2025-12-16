@@ -56,7 +56,11 @@ export const movieService = {
 
   getMovieDetails: async (id: number): Promise<MovieDetails> => {
     try {
-      const response = await tmdbApi.get(`/movie/${id}`);
+      const response = await tmdbApi.get(`/movie/${id}`, {
+        params: {
+          append_to_response: "credits",
+        },
+      });
       return response.data;
     } catch (error) {
       console.error("Error getting movie details", error);
