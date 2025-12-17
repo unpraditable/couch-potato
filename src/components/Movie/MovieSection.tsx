@@ -46,7 +46,7 @@ const MovieSection = <T extends Movie>({
     return (
       <div className="flex flex-nowrap w-full overflow-x-auto gap-4">
         {movies.map((movie) => (
-          <ul key={movie.id}>{renderMovie(movie)}</ul>
+          <ul>{renderMovie(movie)}</ul>
         ))}
       </div>
     );

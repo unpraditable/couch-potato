@@ -29,7 +29,7 @@ const MovieInfo = ({ movie: movieDetails }: MovieInfoProps) => {
           <h2 className="text-xl mb-4 font-bold">Casts:</h2>
           <div className="flex flex-nowrap w-full overflow-x-auto gap-4">
             {movieDetails?.credits?.cast.map((cast) => (
-              <ul key={movieDetails.id}>{<CastCard cast={cast} />}</ul>
+              <ul>{<CastCard cast={cast} />}</ul>
             ))}
           </div>
         </section>
