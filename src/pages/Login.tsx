@@ -1,23 +1,31 @@
-import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import { useForm } from "../hooks/useForm";
+import SocialLoginButton from "../components/General/SocialLoginButton";
+
+interface LoginForm {
+  email: string;
+  password: string;
+}
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const navigate = useNavigate();
   const { login, loginWithGoogle } = useAuth();
 
+  const { values, errors, setErrors, handleChange } = useForm<LoginForm>({
+    email: "",
+    password: "",
+  });
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    setErrors({});
 
     try {
-      login(email, password);
+      login(values.email, values.password);
       navigate("/");
     } catch {
-      setError("Invalid email or password");
+      setErrors({ email: "Invalid email or password" });
     }
   };
 
@@ -39,39 +47,34 @@ const Login = () => {
           </p>
         </div>
 
-        <button
-          onClick={handleGoogleLogin}
-          className="w-full flex items-center justify-center gap-2 py-2 px-4 border rounded-lg hover:bg-gray-50"
-        >
-          <img
-            src="https://www.google.com/favicon.ico"
-            alt="Google"
-            className="w-5 h-5"
-          />
-          Continue with Google
-        </button>
+        <SocialLoginButton provider="google" onClick={handleGoogleLogin} />
 
         <div className="text-center text-gray-500">or</div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
+            name="email"
             type="email"
             placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-2 border rounded"
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={values.email}
+            onChange={handleChange}
             className="w-full p-2 border rounded"
             required
           />
 
-          {error && <div className="text-red-500 text-sm">{error}</div>}
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={values.password}
+            onChange={handleChange}
+            className="w-full p-2 border rounded"
+            required
+          />
+
+          {errors.email && (
+            <div className="text-red-500 text-sm">{errors.email}</div>
+          )}
 
           <button
             type="submit"

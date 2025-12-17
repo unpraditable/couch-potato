@@ -1,30 +1,38 @@
-import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { useForm } from "../../hooks/useForm";
+interface SearchForm {
+  query: string;
+}
 
 const SearchBar = () => {
-  const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
-  const handleSearch = (e: FormEvent) => {
+  const { values, handleChange } = useForm<SearchForm>({
+    query: "",
+  });
+
+  const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      navigate(`/search/movie?q=${encodeURIComponent(searchQuery)}`);
-      setSearchQuery("");
+    if (!values.query.trim()) {
+      return;
     }
+    navigate(`/search/movie?q=${encodeURIComponent(values.query)}`);
   };
+
   return (
     <form onSubmit={handleSearch} className="mb-4">
       <div className="relative">
-        {!searchQuery && (
+        {!values.query && (
           <MagnifyingGlassIcon className="h-6 absolute right-2 top-2" />
         )}
 
         <input
+          name="query"
           type="search"
           placeholder="Search movies..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          value={values.query}
+          onChange={handleChange}
           className="bg-white p-2 w-full text-gray-800"
         />
       </div>

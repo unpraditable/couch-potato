@@ -1,35 +1,45 @@
-import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import { useForm } from "../hooks/useForm";
+import SocialLoginButton from "../components/General/SocialLoginButton";
+
+interface RegisterForm {
+  username: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
 
 const Register = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
   const navigate = useNavigate();
   const { register, loginWithGoogle } = useAuth();
 
+  const { values, errors, setErrors, handleChange } = useForm<RegisterForm>({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    setErrors({});
 
-    if (password.length < 6) {
-      setError("Password must be at least 6 characters");
+    if (values.password.length < 6) {
+      setErrors({ password: "Password must be at least 6 characters" });
       return;
     }
 
-    if (password !== confirmPassword) {
-      setError("Passwords do not match");
+    if (values.password !== values.confirmPassword) {
+      setErrors({ confirmPassword: "Passwords do not match" });
       return;
     }
 
     try {
-      register(username, email, password);
+      register(values.username, values.email, values.password);
       navigate("/");
     } catch {
-      setError("User already exists");
+      setErrors({ email: "User already exists" });
     }
   };
 
@@ -51,66 +61,59 @@ const Register = () => {
           </p>
         </div>
 
-        <button
-          onClick={handleGoogleRegister}
-          className="w-full flex items-center justify-center gap-2 py-2 px-4 border rounded-lg hover:bg-gray-50"
-        >
-          <img
-            src="https://www.google.com/favicon.ico"
-            alt="Google"
-            className="w-5 h-5"
-          />
-          Continue with Google
-        </button>
+        <SocialLoginButton provider="google" onClick={handleGoogleRegister} />
 
         <div className="text-center text-gray-500">or</div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <input
-              type="text"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="w-full p-2 border rounded"
-              required
-            />
-          </div>
+          <input
+            name="username"
+            type="text"
+            placeholder="Username"
+            value={values.username}
+            onChange={handleChange}
+            className="w-full p-2 border rounded"
+            required
+          />
 
-          <div>
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-2 border rounded"
-              required
-            />
-          </div>
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+            value={values.email}
+            onChange={handleChange}
+            className="w-full p-2 border rounded"
+            required
+          />
 
-          <div>
-            <input
-              type="password"
-              placeholder="Password (min 6 characters)"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-2 border rounded"
-              required
-            />
-          </div>
+          <input
+            name="password"
+            type="password"
+            placeholder="Password (min 6 characters)"
+            value={values.password}
+            onChange={handleChange}
+            className="w-full p-2 border rounded"
+            required
+          />
 
-          <div>
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              className="w-full p-2 border rounded"
-              required
-            />
-          </div>
+          <input
+            name="confirmPassword"
+            type="password"
+            placeholder="Confirm Password"
+            value={values.confirmPassword}
+            onChange={handleChange}
+            className="w-full p-2 border rounded"
+            required
+          />
 
-          {error && <div className="text-red-500 text-sm">{error}</div>}
+          {Object.values(errors).map(
+            (error) =>
+              error && (
+                <div key={error} className="text-red-500 text-sm">
+                  {error}
+                </div>
+              )
+          )}
 
           <button
             type="submit"
