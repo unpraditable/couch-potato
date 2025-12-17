@@ -20,7 +20,6 @@ function App() {
     { path: "/movie/:id", element: <MovieDetailsPage /> },
     { path: "/search/movie", element: <SearchPage /> },
   ];
-
   return (
     <>
       <Router>

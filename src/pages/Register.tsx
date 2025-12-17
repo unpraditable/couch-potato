@@ -4,7 +4,6 @@ import { useForm } from "../hooks/useForm";
 import SocialLoginButton from "../components/General/SocialLoginButton";
 
 interface RegisterForm {
-  username: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -15,7 +14,6 @@ const Register = () => {
   const { register, loginWithGoogle } = useAuth();
 
   const { values, errors, setErrors, handleChange } = useForm<RegisterForm>({
-    username: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -36,7 +34,10 @@ const Register = () => {
     }
 
     try {
-      register(values.username, values.email, values.password);
+      register({
+        email: values.email,
+        password: values.password,
+      });
       navigate("/");
     } catch {
       setErrors({ email: "User already exists" });
@@ -66,16 +67,6 @@ const Register = () => {
         <div className="text-center text-gray-500">or</div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <input
-            name="username"
-            type="text"
-            placeholder="Username"
-            value={values.username}
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-            required
-          />
-
           <input
             name="email"
             type="email"

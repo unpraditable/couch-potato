@@ -22,7 +22,7 @@ const Login = () => {
     setErrors({});
 
     try {
-      login(values.email, values.password);
+      login({ email: values.email, password: values.password });
       navigate("/");
     } catch {
       setErrors({ email: "Invalid email or password" });

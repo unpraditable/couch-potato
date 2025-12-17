@@ -30,9 +30,6 @@ const AccountMenuButton = () => {
           <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 z-50">
             <div className="p-3 border-b border-gray-200 dark:border-gray-800">
               <p className="font-medium text-gray-900 dark:text-white">
-                {user?.username}
-              </p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">
                 {user?.email}
               </p>
             </div>

@@ -4,9 +4,9 @@ import {
   type RegisterCredentials,
 } from "../types/Auth";
 
-const STORAGE_KEY = "auth_app";
-const USERS_KEY = "auth_users";
+const USERS_KEY = "users_list";
 
+// all methods here return value to be passed to authStore, will be kept to simulate real login flow
 export const authService = {
   initStorage: () => {
     if (!localStorage.getItem(USERS_KEY)) {
@@ -25,7 +25,6 @@ export const authService = {
 
     const newUser: User = {
       id: Date.now().toString(),
-      username: credentials.username,
       email: credentials.email,
       // Password should be encrypted on real app, this is not encrypted
       password: credentials.password,
@@ -36,14 +35,8 @@ export const authService = {
     users.push(newUser);
     localStorage.setItem(USERS_KEY, JSON.stringify(users));
 
-    // Auto login
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify({
-        user: newUser,
-        isAuthenticated: true,
-      })
-    );
+    // login automatically after "Register"
+    return { user: newUser, isAuthenticated: true };
   },
 
   googleAuth: () => {
@@ -54,20 +47,12 @@ export const authService = {
 
     if (user) {
       // Google user exists, just log them in
-      localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify({
-          user,
-          isAuthenticated: true,
-        })
-      );
-      return;
+      return { user, isAuthenticated: true };
     }
 
     // No Google user exists, create one
     const newUser: User = {
       id: `google_${Date.now()}`,
-      username: `GoogleUser${Math.floor(Math.random() * 1000)}`,
       email: `google.user${Math.floor(Math.random() * 1000)}@gmail.com`,
       provider: "google",
       createdAt: new Date().toISOString(),
@@ -76,14 +61,8 @@ export const authService = {
     users.push(newUser);
     localStorage.setItem(USERS_KEY, JSON.stringify(users));
 
-    // Login automatically
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify({
-        user: newUser,
-        isAuthenticated: true,
-      })
-    );
+    // Login automatically after "register"
+    return { user: newUser, isAuthenticated: true };
   },
 
   login: (credentials: LoginCredentials) => {
@@ -98,23 +77,6 @@ export const authService = {
       throw new Error("Invalid credentials");
     }
 
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify({
-        user,
-        isAuthenticated: true,
-      })
-    );
-  },
-
-  logout: () => {
-    localStorage.removeItem(STORAGE_KEY);
-  },
-
-  getCurrentSession: () => {
-    const session = localStorage.getItem(STORAGE_KEY);
-    return session
-      ? JSON.parse(session)
-      : { user: null, isAuthenticated: false };
+    return { user, isAuthenticated: true };
   },
 };

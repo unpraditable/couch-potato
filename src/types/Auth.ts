@@ -1,6 +1,5 @@
 export interface User {
   id: string;
-  username: string;
   email: string;
   password?: string;
   provider: "google" | "email";
@@ -19,7 +18,6 @@ export interface LoginCredentials {
 }
 
 export interface RegisterCredentials {
-  username: string;
   email: string;
   password: string;
 }
