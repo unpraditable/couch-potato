@@ -5,11 +5,17 @@ import MovieHeader from "../../components/Movie/MovieHeader";
 import MovieInfo from "../../components/Movie/MovieInfo";
 import Loader from "../../components/General/Loader";
 import ErrorWithRetryButton from "../../components/General/ErrorWithRetryButton";
+import { useEffect } from "react";
 
 const MovieDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
 
   const { movieDetails, loading, error, refetch } = useMovieDetails(id);
+
+  // hacky solution to scroll to top when navigating to this page
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   if (loading) {
     return (
@@ -60,12 +66,12 @@ const MovieDetailsPage = () => {
         )}
 
         <div className="relative z-10 container mx-auto px-4 py-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             <div className="lg:col-span-1">
               <MovieHeader movie={movieDetails} />
             </div>
 
-            <div className="lg:col-span-2 space-y-8">
+            <div className="lg:col-span-3 space-y-8">
               <MovieInfo movie={movieDetails} />
             </div>
           </div>

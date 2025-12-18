@@ -14,14 +14,31 @@ const MovieHeader = ({ movie }: MovieHeaderProps) => {
   const { isFavorite, addFavorite, removeFavorite } = useFavorites();
   const favorite = isFavorite(movie.id);
 
+  const formattedReleaseDate = movie.release_date
+    ? new Date(movie.release_date).toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    : "Unknown";
+
   return (
     <>
       <div className="relative mb-6">
         <img
           src={posterUrl}
           alt={movie.title}
-          className="w-full h-auto rounded-lg shadow-lg"
+          className="w-full max-h-100 rounded-lg shadow-lg object-cover"
         />
+      </div>
+
+      <div className="mb-4">
+        <h1 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
+          {movie.title}
+        </h1>
+        <p className="text-gray-500 dark:text-gray-200">
+          {formattedReleaseDate}
+        </p>
       </div>
 
       <button
