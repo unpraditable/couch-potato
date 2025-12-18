@@ -36,11 +36,11 @@ const AccountMenuButton = () => {
 
             <div className="p-2">
               <a
-                href="/"
+                href="/favorites"
                 className="w-full flex items-center gap-2 p-2 text-sm text-gray-700 cursor-pointer dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded"
               >
                 <HeartIcon className="w-4 h-4 text-red-500" />
-                See Favorites
+                My Favorites
               </a>
 
               <button

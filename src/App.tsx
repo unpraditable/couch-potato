@@ -12,13 +12,18 @@ import { useAuth } from "./hooks/useAuth";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import PrivateRoute from "./components/General/PrivateRoute";
+import FavoritesPage from "./pages/Movie/Favorites";
+import { useSyncFavoritesUser } from "./hooks/useSyncFavorites";
 
 function App() {
   const { isAuthenticated } = useAuth();
+  useSyncFavoritesUser();
+
   const protectedRoutes = [
     { path: "/", element: <HomePage /> },
     { path: "/movie/:id", element: <MovieDetailsPage /> },
     { path: "/search/movie", element: <SearchPage /> },
+    { path: "/favorites", element: <FavoritesPage /> },
   ];
   return (
     <>

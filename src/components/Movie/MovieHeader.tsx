@@ -1,3 +1,5 @@
+import { HeartIcon } from "@heroicons/react/24/solid";
+import { useFavorites } from "../../hooks/useFavorites";
 import type { MovieDetails, MovieGenre } from "../../types/MovieDetails";
 
 interface MovieHeaderProps {
@@ -9,6 +11,9 @@ const MovieHeader = ({ movie }: MovieHeaderProps) => {
     ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
     : "https://via.placeholder.com/500x750?text=No+Poster";
 
+  const { isFavorite, addFavorite, removeFavorite } = useFavorites();
+  const favorite = isFavorite(movie.id);
+
   return (
     <div className="card p-6">
       <div className="relative mb-6">
@@ -18,6 +23,25 @@ const MovieHeader = ({ movie }: MovieHeaderProps) => {
           className="w-full h-auto rounded-lg shadow-lg"
         />
       </div>
+
+      <button
+        onClick={() =>
+          favorite ? removeFavorite(movie.id) : addFavorite(movie)
+        }
+        className="mt-2 mb-2 text-gray-800 border-2 p-2 rounded border-gray-800 cursor-pointer dark:text-gray-200 dark:border-gray-200"
+      >
+        {favorite ? (
+          <span className="flex gap-2">
+            <HeartIcon className="w-6 h-6 text-red-500" />
+            Remove from Favorites
+          </span>
+        ) : (
+          <span className="flex gap-2">
+            <HeartIcon className="w-6 h-6 text-red-500" />
+            Add to Favorites
+          </span>
+        )}
+      </button>
 
       <div className="space-y-4">
         <div className="flex items-center gap-2">

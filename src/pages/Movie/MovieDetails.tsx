@@ -8,6 +8,7 @@ import ErrorWithRetryButton from "../../components/General/ErrorWithRetryButton"
 
 const MovieDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
+
   const { movieDetails, loading, error, refetch } = useMovieDetails(id);
 
   if (loading) {
@@ -15,9 +16,9 @@ const MovieDetailsPage = () => {
       <>
         <Header />
         <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
-          <p className="text-lg text-gray-600 dark:text-gray-300">
+          <div className="text-lg text-gray-600 dark:text-gray-300">
             <Loader />
-          </p>
+          </div>
         </div>
       </>
     );
