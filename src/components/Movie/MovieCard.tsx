@@ -12,11 +12,11 @@ const MovieCard = ({ movie }: MovieCardProps) => {
   return (
     <li
       key={movie.id}
-      className="grow-0 shrink-0 basis-auto flex-initial w-50 mb-8"
+      className="grow-0 shrink-0 basis-auto flex-initial w-30 mb-8 sm:w-50 md:w-40"
     >
       <Link to={{ pathname: `/movie/${movie.id}` }}>
         <img
-          className="rounded object-cover w-full h-75"
+          className="rounded object-cover w-full h-45 sm:h-75 md:h-60"
           src={imageUrl}
           alt={`${movie.title} poster`}
         />
