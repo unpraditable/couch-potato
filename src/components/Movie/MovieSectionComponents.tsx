@@ -23,7 +23,7 @@ export const PopularMoviesSection = ({
       isLoading={isLoading}
       error={error}
       onRetry={onRetry}
-      renderMovie={(movie) => <MovieCard movie={movie} />}
+      renderMovie={(movie) => <MovieCard key={movie.id} movie={movie} />}
     />
   );
 };
@@ -41,7 +41,9 @@ export const NowPlayingMoviesSection = ({
       isLoading={isLoading}
       error={error}
       onRetry={onRetry}
-      renderMovie={(movie) => <MovieHorizontalCard movie={movie} />}
+      renderMovie={(movie) => (
+        <MovieHorizontalCard key={movie.id} movie={movie} />
+      )}
     />
   );
 };
@@ -59,7 +61,7 @@ export const TopRatedMoviesSection = ({
       isLoading={isLoading}
       error={error}
       onRetry={onRetry}
-      renderMovie={(movie) => <MovieCard movie={movie} />}
+      renderMovie={(movie) => <MovieCard key={movie.id} movie={movie} />}
     />
   );
 };
@@ -77,7 +79,9 @@ export const UpcomingMoviesSection = ({
       isLoading={isLoading}
       error={error}
       onRetry={onRetry}
-      renderMovie={(movie) => <MovieHorizontalCard movie={movie} />}
+      renderMovie={(movie) => (
+        <MovieHorizontalCard key={movie.id} movie={movie} />
+      )}
     />
   );
 };

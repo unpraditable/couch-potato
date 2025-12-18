@@ -6,10 +6,7 @@ const MovieHorizontalCard = ({ movie }: { movie: Movie }) => {
     ? `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`
     : "https://via.placeholder.com/500x750?text=No+Image";
   return (
-    <li
-      key={movie.id}
-      className="grow-0 shrink-0 basis-auto flex-initial w-[250px]"
-    >
+    <li className="grow-0 shrink-0 basis-auto flex-initial w-[250px]">
       <Link to={{ pathname: `/movie/${movie.id}` }}>
         <img
           className="h-40 rounded object-cover"
