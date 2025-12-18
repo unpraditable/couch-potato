@@ -28,7 +28,7 @@ const MovieInfo = ({ movie: movieDetails }: MovieInfoProps) => {
         <section className="text-gray-700 dark:text-gray-300">
           <h2 className="text-xl mb-4 font-bold">Casts:</h2>
           <ul className="flex flex-nowrap w-full overflow-x-auto gap-4">
-            {movieDetails?.credits?.cast.map((cast) => (
+            {movieDetails?.credits?.cast.slice(0, 10).map((cast) => (
               <CastCard key={cast.id} cast={cast} />
             ))}
           </ul>
