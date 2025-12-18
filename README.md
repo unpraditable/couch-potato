@@ -175,4 +175,7 @@ Planned enhancements for Couch Potato:
    My assessment for this, Login and Register need to be refactored, as Login with LoginForm component and Register with RegisterForm component.
 
 10. **Add Trailer To Movie Details Page**  
-    Because of time constraint, I cannot show the trailer in movie details yet
+    Because of time constraint, I cannot show the trailer in movie details yet.
+
+11. **Add Error Handler and Error Boundary**  
+    We will need to handle errors by it's category, like error 4xx, this also out of the scope with time restrictions.
