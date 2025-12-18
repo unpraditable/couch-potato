@@ -47,7 +47,7 @@ const HomePage = () => {
       <Header />
       <div className="bg-white dark:bg-gray-700 dark:text-white min-h-screen">
         <header className="bg-gray-700 mb-4 py-12">
-          <div className="container mx-auto">
+          <div className="container mx-auto px-4 py-4">
             <h1 className="text-white text-2xl font-bold mb-2">
               Welcome to Couch Potato!
             </h1>
@@ -57,7 +57,7 @@ const HomePage = () => {
             <SearchBar />
           </div>
         </header>
-        <main className="container mx-auto pb-8">
+        <main className="container mx-auto px-4 py-4 pb-8">
           <NowPlayingMoviesSection
             movies={nowPlayingMovies}
             isLoading={isLoadingNowPlayingMovies}

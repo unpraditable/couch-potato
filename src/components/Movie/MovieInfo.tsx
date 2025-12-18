@@ -7,7 +7,7 @@ interface MovieInfoProps {
 
 const MovieInfo = ({ movie: movieDetails }: MovieInfoProps) => {
   return (
-    <div className="p-6">
+    <>
       <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
         {movieDetails.title}
       </h1>
@@ -34,7 +34,7 @@ const MovieInfo = ({ movie: movieDetails }: MovieInfoProps) => {
           </ul>
         </section>
       )}
-    </div>
+    </>
   );
 };
 

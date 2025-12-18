@@ -15,7 +15,7 @@ const MovieHeader = ({ movie }: MovieHeaderProps) => {
   const favorite = isFavorite(movie.id);
 
   return (
-    <div className="card p-6">
+    <>
       <div className="relative mb-6">
         <img
           src={posterUrl}
@@ -66,7 +66,7 @@ const MovieHeader = ({ movie }: MovieHeaderProps) => {
           ))}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
