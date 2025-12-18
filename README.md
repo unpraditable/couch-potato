@@ -1,73 +1,139 @@
-# React + TypeScript + Vite
+# Couch Potato
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Movie Discovery Web Application
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## App Description
 
-## React Compiler
+Couch Potato is a web application for discovering movies using the TMDB API.  
+Users can:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Browse popular movies
+- Search movie titles
+- View detailed movie information
+- Manage favorite movies
+- Authenticate using email or Google (simulated in localStorage, password also not encrypted)
 
-## Expanding the ESLint configuration
+The application is built with a focus on performance, clean architecture, and modern React best practices.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Tech Stack & Decisions
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### React + Vite
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Faster development server and hot module replacement
+- Better performance compared to create-react-app
+- Modern and lightweight tooling
+- Vite is the recommended standard for modern React applications
+
+### Tailwind CSS
+
+- Utility-first approach enables faster UI development
+- Highly customizable design system
+- Ideal for custom UI-heavy apps like a movie platform
+
+### Zustand (State Management)
+
+- Used for global state such as authentication and favorites
+- Lightweight with minimal boilerplate
+- Hook-based API fits naturally with React Hooks
+- Avoids deeply nested Context Providers
+- Simpler alternative to Redux for this project’s complexity, more dev friendly
+
+### Heroicons
+
+- Designed by the developers of Tailwind
+- Consistent visual style with Tailwind
+- SVG-based and easy to customize
+
+### React Router DOM
+
+- Client-side routing
+- Protected routes (authentication-based)
+- Web-only targeting
+
+---
+
+## Architecture Overview
+
+The app follows a layered architecture:
+
+```
+Pages & Components
+↓
+Custom Hooks
+↓
+Zustand Stores
+↓
+Services (API & localStorage)
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+**Benefits:**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Clear separation of concerns
+- Reusable and testable logic
+- Clean and readable components
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## Folder Structure
+
 ```
+src/
+├── components/ # Reusable UI components
+├── pages/ # Route-level pages
+├── hooks/ # Custom React hooks
+├── stores/ # Zustand stores (auth, favorites)
+├── services/ # API & persistence logic
+├── types/ # TypeScript definitions
+└── App.tsx
+```
+
+---
+
+## Key Implementation Notes
+
+- Authentication and favorites are handled via Zustand with persistence
+- Favorites are tied to the authenticated user
+- Global state ensures UI updates immediately on login/logout
+- Custom hooks abstract logic away from UI components
+- Protected routes prevent unauthorized access
+
+---
+
+## Performance Considerations
+
+- Optimized state updates using Zustand
+- Pagination for search results
+- Avoid unnecessary re-renders via hooks abstraction
+- Centralized API access through services
+- Ready for lazy loading and memoization where needed
+
+---
+
+Planned enhancements for Couch Potato:
+
+1. **Caching API responses**  
+   Use **React Query** (or similar) to cache movie data so pages don’t reload every time.
+
+2. **Internationalization (i18n)**  
+   Add multi-language support for global accessibility.
+
+3. **Electron.js integration**  
+   Package the app as a desktop application for offline usage.
+
+4. **Analytics tracking**  
+   Integrate **Firebase Analytics** to monitor user interactions and app usage.
+
+5. **Night mode persistence**  
+   Persist dark/light mode selection beyond Tailwind’s default behavior.
+
+6. **Co-located unit tests**  
+   Write Jest tests alongside implementation files for easier tracking and usage of `spyOn` or mocks.
+
+7. **Caching API responses**  
+   Use **React Window** (or similar) to render list items so it only shows the component visible in screen to save performance.
+
+---
