@@ -115,6 +115,12 @@ src/
 
 ## How to Run The App
 
+Prerequisite:
+
+1. Create an API key in TMDB API[https://developer.themoviedb.org/docs/getting-started]
+2. Create an .env file that contains VITE_TMDB_API_KEY (put the TMDB API key here) and VITE_TMDB_BASE_URL (for base url, put "https://api.themoviedb.org/3")
+3. Make sure you use node version 16 or higher (until 22)
+
 ```
 npm run dev
 ```
@@ -125,6 +131,9 @@ Open http://localhost:5173
 in your browser
 
 Supports Hot Module Replacement (HMR) for fast development
+
+or you can try the app here:
+https://2025-couch-potato.netlify.app/
 
 ## How to Test The App
 
