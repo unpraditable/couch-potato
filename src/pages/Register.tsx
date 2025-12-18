@@ -50,7 +50,7 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-800 dark:text-white">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-800">
       <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow">
         <div>
           <h2 className="text-3xl font-bold text-center">Create Account</h2>
@@ -73,7 +73,7 @@ const Register = () => {
             placeholder="Email"
             value={values.email}
             onChange={handleChange}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border border-gray-300 rounded"
             required
           />
 
@@ -83,7 +83,7 @@ const Register = () => {
             placeholder="Password (min 6 characters)"
             value={values.password}
             onChange={handleChange}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border border-gray-300 rounded"
             required
           />
 
@@ -93,7 +93,7 @@ const Register = () => {
             placeholder="Confirm Password"
             value={values.confirmPassword}
             onChange={handleChange}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border border-gray-300  rounded"
             required
           />
 
