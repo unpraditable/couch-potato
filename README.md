@@ -113,6 +113,29 @@ src/
 
 ---
 
+## How to Run The App
+
+```
+npm run dev
+```
+
+Starts the Vite development server
+
+Open http://localhost:5173
+in your browser
+
+Supports Hot Module Replacement (HMR) for fast development
+
+## How to Test The App
+
+```
+npm test
+```
+
+Note: due to time constraint, the testing is only in favorite hooks and favorite service. Test setup in UI or jsx component not configured yet
+
+---
+
 Planned enhancements for Couch Potato:
 
 1. **Caching API responses**  
@@ -136,4 +159,5 @@ Planned enhancements for Couch Potato:
 7. **Caching API responses**  
    Use **React Window** (or similar) to render list items so it only shows the component visible in screen to save performance.
 
----
+8. **Setup UI or JSX Unit Tests**  
+   JSX unit test is not configured properly yet, we can configure it at the future, or use other tools like cypress or playwright

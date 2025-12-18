@@ -5,7 +5,13 @@ const FAVORITES_KEY = "favorite_movies";
 export const favoritesService = {
   getFavorites: (): Movie[] => {
     const data = localStorage.getItem(FAVORITES_KEY);
-    return data ? JSON.parse(data) : [];
+    if (!data) return [];
+
+    try {
+      return JSON.parse(data) as Movie[];
+    } catch {
+      return [];
+    }
   },
 
   saveFavorites: (movies: Movie[]) => {
