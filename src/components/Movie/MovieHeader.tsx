@@ -28,7 +28,7 @@ const MovieHeader = ({ movie }: MovieHeaderProps) => {
         onClick={() =>
           favorite ? removeFavorite(movie.id) : addFavorite(movie)
         }
-        className="mt-2 mb-2 text-gray-800 border-2 p-2 rounded border-gray-800 cursor-pointer dark:text-gray-200 dark:border-gray-200"
+        className="mt-2 mb-2 text-gray-800 border-2 p-2 rounded border-gray-400 cursor-pointer dark:text-gray-200 "
       >
         {favorite ? (
           <span className="flex gap-2">
