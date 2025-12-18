@@ -1,7 +1,7 @@
 import type { Movie } from "../../types/Movie";
 import MovieSection from "./MovieSection";
 import MovieCard from "./MovieCard";
-import MovieBackdropCard from "./MovieBackdropCard";
+import MovieHorizontalCard from "./MovieHorizontalCard";
 
 interface MovieSectionProps {
   isLoading: boolean;
@@ -41,7 +41,7 @@ export const NowPlayingMoviesSection = ({
       isLoading={isLoading}
       error={error}
       onRetry={onRetry}
-      renderMovie={(movie) => <MovieBackdropCard movie={movie} />}
+      renderMovie={(movie) => <MovieHorizontalCard movie={movie} />}
     />
   );
 };
@@ -77,7 +77,7 @@ export const UpcomingMoviesSection = ({
       isLoading={isLoading}
       error={error}
       onRetry={onRetry}
-      renderMovie={(movie) => <MovieBackdropCard movie={movie} />}
+      renderMovie={(movie) => <MovieHorizontalCard movie={movie} />}
     />
   );
 };
