@@ -169,4 +169,7 @@ Planned enhancements for Couch Potato:
    Use **React Window** (or similar) to render list items so it only shows the component visible in screen to save performance.
 
 8. **Setup UI or JSX Unit Tests**  
-   JSX unit test is not configured properly yet, we can configure it at the future, or use other tools like cypress or playwright
+   JSX unit test is not configured properly yet, we can configure it at the future, or use other tools like Cypress or Playwright.
+
+9. **Refactoring Units That Are Needed To Be Refactoreds**  
+   My assessment for this, Login and Register need to be refactored, as Login with LoginForm component and Register with RegisterForm component.
