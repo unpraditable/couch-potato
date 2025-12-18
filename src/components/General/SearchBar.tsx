@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { useForm } from "../../hooks/useForm";
 interface SearchForm {
   query: string;
@@ -21,12 +20,8 @@ const SearchBar = () => {
   };
 
   return (
-    <form onSubmit={handleSearch} className="mb-4">
-      <div className="relative">
-        {!values.query && (
-          <MagnifyingGlassIcon className="h-6 absolute right-2 top-2" />
-        )}
-
+    <form onSubmit={handleSearch} className="mb-4 flex items-center">
+      <div className="relative flex-1">
         <input
           name="query"
           type="search"
@@ -34,8 +29,17 @@ const SearchBar = () => {
           value={values.query}
           onChange={handleChange}
           className="bg-white p-2 w-full border border-gray-400 text-gray-800"
+          aria-label="Search movies"
         />
       </div>
+
+      <button
+        type="submit"
+        className="ml-2 p-2 bg-blue-500 text-white rounded cursor-pointer hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        name="Submit Search"
+      >
+        Search
+      </button>
     </form>
   );
 };
