@@ -33,7 +33,7 @@ const SearchBar = () => {
           placeholder="Search movies..."
           value={values.query}
           onChange={handleChange}
-          className="bg-white p-2 w-full text-gray-800"
+          className="bg-white p-2 w-full border border-gray-400 text-gray-800"
         />
       </div>
     </form>
