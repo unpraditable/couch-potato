@@ -173,3 +173,6 @@ Planned enhancements for Couch Potato:
 
 9. **Refactoring Units That Are Needed To Be Refactoreds**  
    My assessment for this, Login and Register need to be refactored, as Login with LoginForm component and Register with RegisterForm component.
+
+10. **Add Trailer To Movie Details Page**  
+    Because of time constraint, I cannot show the trailer in movie details yet
